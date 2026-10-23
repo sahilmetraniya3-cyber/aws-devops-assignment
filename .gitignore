@@ -8,3 +8,14 @@ terraform.tfvars
 *.pem
 .DS_Store
 __pycache__/
+
+# Terraform local data and state
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.*.log
+
+# Local secrets
+*.tfvars
+!terraform.tfvars.example

@@ -51,7 +51,7 @@ resource "aws_lb" "app" {
     prefix  = "alb"
     enabled = true
   }
-  tags = local.common_tags
+  tags       = local.common_tags
   depends_on = [aws_s3_bucket_policy.alb_logs]
 }
 

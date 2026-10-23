@@ -15,7 +15,7 @@ resource "aws_vpc" "main" {
   cidr_block           = var.vpc_cidr
   enable_dns_support   = true
   enable_dns_hostnames = true
-  tags = merge(local.common_tags, { Name = "${local.name}-vpc" })
+  tags                 = merge(local.common_tags, { Name = "${local.name}-vpc" })
 }
 
 resource "aws_internet_gateway" "main" {
@@ -29,7 +29,7 @@ resource "aws_subnet" "public" {
   cidr_block              = cidrsubnet(var.vpc_cidr, 8, count.index)
   availability_zone       = local.azs[count.index]
   map_public_ip_on_launch = true
-  tags = merge(local.common_tags, { Name = "${local.name}-public-${count.index + 1}" })
+  tags                    = merge(local.common_tags, { Name = "${local.name}-public-${count.index + 1}" })
 }
 
 resource "aws_subnet" "app" {
@@ -38,7 +38,7 @@ resource "aws_subnet" "app" {
   cidr_block              = cidrsubnet(var.vpc_cidr, 8, count.index + 10)
   availability_zone       = local.azs[count.index]
   map_public_ip_on_launch = false
-  tags = merge(local.common_tags, { Name = "${local.name}-private-app-${count.index + 1}" })
+  tags                    = merge(local.common_tags, { Name = "${local.name}-private-app-${count.index + 1}" })
 }
 
 resource "aws_subnet" "db" {
@@ -47,7 +47,7 @@ resource "aws_subnet" "db" {
   cidr_block              = cidrsubnet(var.vpc_cidr, 8, count.index + 20)
   availability_zone       = local.azs[count.index]
   map_public_ip_on_launch = false
-  tags = merge(local.common_tags, { Name = "${local.name}-private-db-${count.index + 1}" })
+  tags                    = merge(local.common_tags, { Name = "${local.name}-private-db-${count.index + 1}" })
 }
 
 resource "aws_route_table" "public" {

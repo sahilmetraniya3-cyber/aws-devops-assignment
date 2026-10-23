@@ -5,8 +5,8 @@ variable "aws_region" {
 }
 
 variable "project_name" {
-  type        = string
-  default     = "devops-assignment"
+  type    = string
+  default = "devops-assignment"
 }
 
 variable "vpc_cidr" {
