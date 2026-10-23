@@ -42,10 +42,12 @@ resource "aws_launch_template" "app" {
     http_tokens   = "required"
   }
   user_data = base64encode(templatefile("${path.module}/user_data.sh.tftpl", {
-    app_port   = var.app_port
-    app_name   = local.name
-    secret_arn = aws_secretsmanager_secret.db.arn
-    aws_region = var.aws_region
+    app_port     = var.app_port
+    app_name     = local.name
+    secret_arn   = aws_secretsmanager_secret.db.arn
+    aws_region   = var.aws_region
+    app_source   = file("${path.module}/../app/app.py")
+    requirements = file("${path.module}/../app/requirements.txt")
   }))
   tag_specifications {
     resource_type = "instance"
