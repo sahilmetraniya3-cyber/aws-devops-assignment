@@ -19,3 +19,19 @@ crash.*.log
 # Local secrets
 *.tfvars
 !terraform.tfvars.example
+
+# Python virtual environment
+.venv/
+venv/
+*.py[cod]
+
+# Local HTTPS certificates and private keys
+certs/
+*.key
+*.crt
+
+# Terraform saved plans and backup files
+tfplan
+*.backup
+
+# Local screenshots are intentionally allowed
