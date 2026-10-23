@@ -1,0 +1,11 @@
+flowchart TD
+    U[Internet / Users] -->|HTTPS 443| ALB[Application Load Balancer]
+    ALB --> EC1[EC2 Auto Scaling Group - AZ A]
+    ALB --> EC2[EC2 Auto Scaling Group - AZ B]
+    EC1 -->|MySQL 3306| RDS[(RDS MySQL - Private DB Subnets)]
+    EC2 -->|MySQL 3306| RDS
+    EC1 --> SM[AWS Secrets Manager]
+    EC2 --> SM
+    ALB -->|Access logs| S3[(Private S3 Logs Bucket)]
+    IGW[Internet Gateway] --- PUB[Public Subnets]
+    NAT[NAT Gateway] --- APP[Private App Subnets]
